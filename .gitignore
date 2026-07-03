@@ -1,0 +1,10 @@
+# PDFs — source files and generated output are not tracked
+*.pdf
+
+# Intermediate image artifacts from rendering/comparison
+*.jpg
+*.jpeg
+*.png
+
+# macOS
+.DS_Store
