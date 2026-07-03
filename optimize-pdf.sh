@@ -15,9 +15,10 @@
 #   DPI=150      target image resolution (150 ≈ crisp on-screen, lossless-ish)
 #   QUALITY=ebook   ghostscript preset: screen | ebook | printer | prepress
 #   EDIT_PASSWORD=...  set an *owner* password. The PDF stays freely
-#                      viewable and printable by anyone, but editing/
-#                      modifying it requires this password. (This is NOT
-#                      a viewing password — leave it unset for no protection.)
+#                      viewable and printable by anyone, but editing,
+#                      modifying, AND copying text/content require this
+#                      password. (This is NOT a viewing password — leave
+#                      it unset for no protection.)
 #
 # Examples:
 #   ./optimize-pdf.sh "Mallorca Travel Guide.pdf"
@@ -79,7 +80,7 @@ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dNOPAUSE -dBATCH -dQUIET \
 qpdf_args=(--linearize --compress-streams=y --object-streams=generate)
 if [ -n "$EDIT_PASSWORD" ]; then
   qpdf_args+=(--encrypt "" "$EDIT_PASSWORD" 256
-              --modify=none --print=full --extract=y --)
+              --modify=none --extract=n --print=full --)
 fi
 qpdf "${qpdf_args[@]}" "$TMP" "$OUTPUT"
 

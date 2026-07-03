@@ -25,7 +25,7 @@ brew install ghostscript qpdf
 |-----------------|---------|----------------------------------------------------------------|
 | `DPI`           | `150`   | Image resolution. Lower = smaller file, higher = more detail.  |
 | `QUALITY`       | `ebook` | Ghostscript preset: `screen`, `ebook`, `printer`, `prepress`.  |
-| `EDIT_PASSWORD` | *(off)* | Owner password: locks **editing**, viewing/printing stay open. |
+| `EDIT_PASSWORD` | *(off)* | Owner password: locks **editing & copying**, viewing/printing stay open. |
 
 ```sh
 DPI=120 ./optimize-pdf.sh big.pdf small.pdf        # smaller / more compression
@@ -38,7 +38,8 @@ EDIT_PASSWORD='s3cret' ./optimize-pdf.sh in.pdf    # lock editing, open viewing
 This is an **owner** password (AES-256), **not** a viewing password:
 
 - Anyone can open, view, and print the PDF with **no password**.
-- Editing, modifying, or reassembling it requires the password.
+- Editing, modifying, reassembling, or **copying text/content** requires
+  the password. (Accessibility extraction for screen readers stays allowed.)
 
 ## Notes
 
